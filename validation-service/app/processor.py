@@ -36,7 +36,7 @@ def process_csv(job_id: int, file_path: str, db: Session):
         total_rows = 0
 
         for chunk in pd.read_csv(file_path, chunksize=CHUNK_SIZE, dtype=str):
-            chunk = chunk.where(pd.notna(chunk), None)
+            chunk = chunk.fillna("")
             total_rows += len(chunk)
 
             valid_rows, error_records = validate_chunk(chunk, schema)

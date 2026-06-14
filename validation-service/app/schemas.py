@@ -56,14 +56,18 @@ class UploadResponse(BaseModel):
 
 # ── Status Response Schema ────────────────────────────────
 class StatusResponse(BaseModel):
-    job_id: int
+    id: int
     file_name: str
+    file_path:str
     status: str
     total_rows: int
     valid_rows: int
     error_rows: int
     created_at: datetime
     completed_at: Optional[datetime] = None
+    
+    class Config:
+        from_attributes=True
 
 
 # ── Error Report Schema ───────────────────────────────────

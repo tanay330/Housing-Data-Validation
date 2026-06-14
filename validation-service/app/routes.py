@@ -65,7 +65,7 @@ async def upload_csv(
 
 # ── Endpoint 2: Check Status ──────────────────────────────
 @router.get("/status/{job_id}", response_model=StatusResponse)
-def get_status(
+async def get_status(
     job_id: int,
     db: Session = Depends(get_db),
     email: str = Depends(verify_token)
@@ -81,7 +81,7 @@ def get_status(
 
 # ── Endpoint 3: Get Error Report ──────────────────────────
 @router.get("/errors/{job_id}", response_model=ErrorReportResponse)
-def get_errors(
+async def get_errors(
     job_id: int,
     db: Session = Depends(get_db),
     email: str = Depends(verify_token)
@@ -106,7 +106,7 @@ def get_errors(
 
 # ── Endpoint 4: Get Validation Rules ─────────────────────
 @router.get("/rules", response_model=List[ValidationRuleResponse])
-def get_rules(
+async def get_rules(
     db: Session = Depends(get_db),
     email: str = Depends(verify_token)
 ):

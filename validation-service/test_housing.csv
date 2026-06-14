@@ -1,0 +1,11 @@
+property_id,address,city,state,pincode,area_sqft,price,bedrooms,status
+P001,123 Main St,Nagpur,Maharashtra,440001,1200,5000000,3,active
+P002,456 Park Ave,Mumbai,Maharashtra,400001,2500,15000000,4,active
+P003,789 Lake Rd,Pune,Maharashtra,411001,800,3000000,2,pending
+P004,321 Hill St,Nagpur,Maharashtra,440002,1500,7000000,3,inactive
+P005,654 River Rd,Mumbai,Maharashtra,1234,1000,4500000,2,active
+P006,987 Garden St,Pune,Maharashtra,411002,,2000000,1,active
+P007,111 Sky Tower,Nagpur,Maharashtra,440003,2000,-500000,3,active
+P008,222 Beach Rd,Mumbai,Maharashtra,400002,3000,20000000,5,deleted
+P009,333 Forest Ave,Pune,Maharashtra,411003,1800,8000000,,pending
+P010,444 Valley St,Nagpur,Maharashtra,440004,1600,6000000,2,active
