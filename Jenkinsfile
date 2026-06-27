@@ -33,9 +33,9 @@ pipeline {
             steps {
                 echo 'Checking services are healthy...'
                 sleep(time: 20, unit: 'SECONDS')
-                sh 'curl -f http://localhost/health'
-                sh 'curl -f http://localhost/auth/health'
-                sh 'curl -f http://localhost/validate/health'
+                sh 'curl -f http://nginx_proxy/health'
+                sh 'curl -f http://nginx_proxy/auth/health'
+                sh 'curl -f http://nginx_proxy/validate/health'
             }
         }
     }
