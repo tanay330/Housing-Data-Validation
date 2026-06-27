@@ -49,7 +49,7 @@ services:
     volumes:
       - uploads_data:/app/uploads
 
- nginx:
+  nginx:
     image: nginx:latest
     container_name: nginx_proxy
     ports:
