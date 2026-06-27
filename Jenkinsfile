@@ -17,15 +17,15 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building Docker images...'
-                bat 'docker-compose build'
+                sh 'docker compose build'
             }
         }
 
         stage('Deploy') {
             steps {
                 echo 'Deploying all services...'
-                bat 'docker-compose down'
-                bat 'docker-compose up -d'
+                sh 'docker compose down'
+                sh 'docker compose up -d'
             }
         }
 
@@ -33,9 +33,9 @@ pipeline {
             steps {
                 echo 'Checking services are healthy...'
                 sleep(time: 20, unit: 'SECONDS')
-                bat 'curl -f http://localhost/health'
-                bat 'curl -f http://localhost/auth/health'
-                bat 'curl -f http://localhost/validate/health'
+                sh 'curl -f http://localhost/health'
+                sh 'curl -f http://localhost/auth/health'
+                sh 'curl -f http://localhost/validate/health'
             }
         }
     }
@@ -46,7 +46,7 @@ pipeline {
         }
         failure {
             echo 'Pipeline failed! Check the logs above.'
-            bat 'docker-compose logs'
+            sh 'docker compose logs --tail=50'
         }
     }
 }
