@@ -50,15 +50,10 @@ services:
       - uploads_data:/app/uploads
 
   nginx:
-    image: nginx:latest
+    build: ./nginx
     container_name: nginx_proxy
     ports:
       - "80:80"
-    volumes:
-      - type: bind
-        source: ./nginx/nginx.conf
-        target: /etc/nginx/nginx.conf
-        read_only: true
     depends_on:
       - auth-service
       - validation-service
