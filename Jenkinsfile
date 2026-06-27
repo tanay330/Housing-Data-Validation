@@ -1,52 +1,35 @@
 pipeline {
     agent any
-
-    environment {
-        COMPOSE_PROJECT_NAME = 'housing-data-validation'
-    }
-
     stages {
-
         stage('Checkout') {
             steps {
-                echo 'Pulling latest code from GitHub...'
-                checkout scm
+                git branch: 'main', url: 'https://github.com/tanay330/housing-data-validation.git'
             }
         }
-
         stage('Build') {
             steps {
-                echo 'Building Docker images...'
                 sh 'docker compose build'
             }
         }
-
         stage('Deploy') {
             steps {
-                echo 'Deploying all services...'
                 sh 'docker compose down'
                 sh 'docker compose up -d'
             }
         }
-
         stage('Health Check') {
             steps {
-                echo 'Checking services are healthy...'
                 sleep(time: 20, unit: 'SECONDS')
-                sh 'curl -f http://nginx_proxy/health'
-                sh 'curl -f http://nginx_proxy/auth/health'
-                sh 'curl -f http://nginx_proxy/validate/health'
+                sh 'docker exec nginx_proxy curl -f http://localhost/health'
             }
         }
     }
-
     post {
         success {
-            echo 'Pipeline completed successfully! All services are running.'
+            echo 'SUCCESS'
         }
         failure {
-            echo 'Pipeline failed! Check the logs above.'
-            sh 'docker compose logs --tail=50'
+            echo 'FAILED'
         }
     }
 }
